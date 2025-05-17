@@ -76,17 +76,14 @@ export function Header() {
             <span className="text-sm font-semibold">+91 9820931585</span>
             <span className="text-xs font-light">(WhatsApp)</span>
           </Link>
-          <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
-              <Image
-                src="/ceo.png"
-                alt="Anil Devkar"
-                fill
-                className="object-cover object-[center_60%]"
-                sizes="32px"
-              />
-            </div>
-            <span className="text-sm font-medium">ANIL DEVKAR</span>
+          <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
+            <Image
+              src="/ceo.png"
+              alt="Anil Devkar"
+              fill
+              className="object-cover object-[center_60%]"
+              sizes="32px"
+            />
           </div>
           <Button asChild>
             <Link href="/booking">Book Now</Link>
@@ -105,18 +102,15 @@ export function Header() {
             <Phone className="h-3 w-3" />
             <span className="text-sm font-semibold">WhatsApp</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
-              <Image
-                src="/ceo.png"
-                alt="Anil Devkar"
-                fill
-                className="object-cover object-[center_60%]"
-                sizes="32px"
-                priority
-              />
-            </div>
-            <span className="text-xs font-medium">ANIL DEVKAR</span>
+          <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
+            <Image
+              src="/ceo.png"
+              alt="Anil Devkar"
+              fill
+              className="object-cover object-[center_60%]"
+              sizes="32px"
+              priority
+            />
           </div>
         </div>
 
@@ -169,7 +163,7 @@ export function Header() {
               <div className="border-t mx-4 my-2" />
 
               <div className="p-6 pt-2 border-t-0 mt-auto bg-secondary/20">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex justify-center mb-6">
                   <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary shadow-md">
                     <Image
                       src="/ceo.png"
@@ -179,10 +173,6 @@ export function Header() {
                       sizes="56px"
                       priority
                     />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-lg font-semibold">ANIL DEVKAR</span>
-                    <span className="text-sm text-muted-foreground">CEO, Devkar Paints</span>
                   </div>
                 </div>
                 <Link
