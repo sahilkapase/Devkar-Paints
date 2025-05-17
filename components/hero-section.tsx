@@ -55,7 +55,7 @@ export function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="text-white border-white hover:bg-white/10 transition-all duration-300 rounded-full py-6 text-base font-medium"
+                className="bg-transparent !bg-transparent border-white text-white hover:bg-white/10 transition-all duration-300 rounded-full py-6 text-base font-medium"
               >
                 <Link href="/services" className="flex items-center justify-center gap-2">
                   Our Services <ArrowRight className="h-4 w-4 animate-bounce-right" />

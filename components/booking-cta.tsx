@@ -24,7 +24,12 @@ export function BookingCta() {
             <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90">
               <Link href="/booking">Book a Consultation</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-white/10">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-white text-white hover:bg-white/10 hover:text-white"
+            >
               <Link href="/contact" className="flex items-center gap-2">
                 Contact Us <ArrowRight className="h-4 w-4" />
               </Link>
