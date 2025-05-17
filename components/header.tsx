@@ -102,7 +102,7 @@ export function Header() {
             className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
             title="Chat on WhatsApp"
           >
-            <Phone className="h-4 w-4" />
+            <Phone className="h-3 w-3" />
             <span className="text-sm font-semibold">WhatsApp</span>
           </Link>
           <div className="flex items-center gap-2">
@@ -123,7 +123,7 @@ export function Header() {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
             <Button variant="outline" size="icon" className="border-0">
-              <Menu className="h-5 w-5" />
+              <Menu className="h-7 w-7" />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
