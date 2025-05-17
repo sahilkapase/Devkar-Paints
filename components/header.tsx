@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, PaintBucket, Phone, X } from "lucide-react"
+import { Menu, PaintBucket, Phone, X, Home, Wrench, Image as ImageIcon, User, Mail, Calendar } from "lucide-react"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
@@ -129,54 +129,59 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="right" className="w-full sm:max-w-sm p-0">
             <SheetHeader>
-              <SheetTitle>Mobile Navigation</SheetTitle>
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             </SheetHeader>
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full bg-white dark:bg-white/95">
               <div className="flex items-center justify-between p-4 border-b">
                 <Link href="/" className="flex items-center gap-2" onClick={closeSheet}>
                   <PaintBucket className="h-6 w-6 text-primary" />
                   <span className="font-bold text-xl">Devkar Paints</span>
                 </Link>
-                <Button variant="ghost" size="icon" onClick={closeSheet}>
-                  <X className="h-5 w-5" />
-                </Button>
               </div>
 
               <nav className="flex flex-col p-4 gap-1 flex-1">
                 {[
-                  { href: "/", label: "Home" },
-                  { href: "/services", label: "Services" },
-                  { href: "/gallery", label: "Gallery" },
-                  { href: "/about", label: "About" },
-                  { href: "/contact", label: "Contact" },
-                ].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`py-3 px-4 text-lg font-medium rounded-md transition-colors ${
-                      pathname === link.href ? "bg-primary/10 text-primary font-semibold" : "hover:bg-secondary"
-                    }`}
-                    onClick={closeSheet}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                  { href: "/", label: "Home", icon: Home },
+                  { href: "/services", label: "Services", icon: Wrench },
+                  { href: "/gallery", label: "Gallery", icon: ImageIcon },
+                  { href: "/about", label: "About", icon: User },
+                  { href: "/contact", label: "Contact", icon: Mail },
+                ].map((link) => {
+                  const Icon = link.icon
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`flex items-center gap-3 py-4 px-4 text-lg font-medium rounded-lg transition-all duration-200 ${
+                        pathname === link.href 
+                          ? "bg-primary/10 text-primary font-semibold shadow-sm" 
+                          : "hover:bg-secondary/50 hover:translate-x-1"
+                      }`}
+                      onClick={closeSheet}
+                    >
+                      <Icon className="h-5 w-5" />
+                      {link.label}
+                    </Link>
+                  )
+                })}
               </nav>
 
-              <div className="p-4 border-t mt-auto">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+              <div className="border-t mx-4 my-2" />
+
+              <div className="p-6 pt-2 border-t-0 mt-auto bg-secondary/20">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-primary shadow-md">
                     <Image
                       src="/ceo.png"
                       alt="Anil Devkar"
                       fill
                       className="object-cover object-[center_60%]"
-                      sizes="48px"
+                      sizes="56px"
                       priority
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-base font-semibold">ANIL DEVKAR</span>
+                    <span className="text-lg font-semibold">ANIL DEVKAR</span>
                     <span className="text-sm text-muted-foreground">CEO, Devkar Paints</span>
                   </div>
                 </div>
@@ -184,15 +189,18 @@ export function Header() {
                   href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md mb-4"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-all duration-200 shadow-md mb-4 hover:shadow-lg"
                   title="Chat on WhatsApp"
                 >
                   <Phone className="h-5 w-5" />
                   <span className="text-base font-semibold">+91 9820931585</span>
                   <span className="text-xs font-light">(WhatsApp)</span>
                 </Link>
-                <Button asChild className="w-full" onClick={closeSheet}>
-                  <Link href="/booking">Book Now</Link>
+                <Button asChild className="w-full gap-2 py-6 text-base" onClick={closeSheet}>
+                  <Link href="/booking">
+                    <Calendar className="h-5 w-5" />
+                    Book Now
+                  </Link>
                 </Button>
               </div>
             </div>
