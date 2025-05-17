@@ -1,0 +1,105 @@
+import Link from "next/link"
+import { PaintBucket, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+export function Footer() {
+  return (
+    <footer className="bg-gradient-to-br from-slate-900 to-slate-800 text-slate-200">
+      <div className="container py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+          <div>
+            <Link href="/" className="flex items-center gap-2 mb-6">
+              <PaintBucket className="h-6 w-6 text-primary" />
+              <span className="font-bold text-xl text-white">Devkar Paints</span>
+            </Link>
+            <p className="text-slate-400 mb-6">
+              Professional painting services for homes and businesses in MUMBAI and surrounding areas.
+            </p>
+            <div className="flex gap-4">
+
+
+              {
+                [
+
+                  { icon: Facebook, label: "Facebook" },
+                  { icon: Instagram, label: "Instagram" },
+                  { icon: Twitter, label: "Twitter" },
+                  { icon: Linkedin, label: "LinkedIn" },
+                ].map((social, index) => (
+                  <Link
+                    key={index}
+                    href="#"
+                    className="text-slate-400 hover:text-primary transition-colors h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center"
+                  >
+                    <social.icon className="h-5 w-5" />
+                    <span className="sr-only">{social.label}</span>
+                  </Link>
+                ))}
+            </div>
+          </div>
+
+          <div className="mt-2">
+            <h3 className="font-semibold text-white text-lg mb-6">Quick Links</h3>
+            <ul className="space-y-3">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/services", label: "Services" },
+                { href: "/gallery", label: "Gallery" },
+                { href: "/about", label: "About Us" },
+                { href: "/contact", label: "Contact" },
+                { href: "/booking", label: "Book a Consultation" },
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link href={link.href} className="text-slate-400 hover:text-primary transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-2">
+            <h3 className="font-semibold text-white text-lg mb-6">Contact Info</h3>
+            <ul className="space-y-4">
+              <li className="flex gap-3">
+                <MapPin className="h-5 w-5 text-primary shrink-0" />
+                <span className="text-slate-400">
+                  Devkar Painting Works, flat No.3, Pooja Co housing, A-21, Ichaputi Ganpati Mandir Cha Behind,
+                  <br />
+                  Sector 15, Airoli, Navi Mumbai, Maharashtra 400708
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <Phone className="h-5 w-5 text-primary shrink-0" />
+                <span className="text-slate-400">+91  9820931585</span>
+              </li>
+              <li className="flex gap-3">
+                <Mail className="h-5 w-5 text-primary shrink-0" />
+                <span className="text-slate-400"> anilpdeokar9820@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-2">
+            <h3 className="font-semibold text-white text-lg mb-6">Newsletter</h3>
+            <p className="text-slate-400 mb-4">Subscribe to our newsletter for tips, trends, and special offers.</p>
+            <div className="flex flex-col gap-3">
+              <Input
+                type="email"
+                placeholder="Your email address"
+                className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
+              />
+              <Button className="w-full">Subscribe</Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400 text-sm">
+          <p>© {new Date().getFullYear()} developed by Sahil Kapase. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}

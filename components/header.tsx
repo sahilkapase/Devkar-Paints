@@ -1,0 +1,204 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Menu, PaintBucket, Phone, X } from "lucide-react"
+import Image from "next/image"
+
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { usePathname } from "next/navigation"
+
+export function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  const closeSheet = () => setIsOpen(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+
+    // Add this line to trigger the scroll handler on initial load
+    handleScroll()
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b shadow-sm"
+          : "bg-transparent border-transparent"
+      }`}
+    >
+      <div className="container flex h-16 md:h-20 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
+            <PaintBucket className="h-6 w-6 text-primary" />
+            <span className="font-bold text-xl">Devkar Paints</span>
+          </Link>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-6">
+          {[
+            { href: "/", label: "Home" },
+            { href: "/services", label: "Services" },
+            { href: "/gallery", label: "Gallery" },
+            { href: "/about", label: "About" },
+            { href: "/contact", label: "Contact" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                pathname === link.href ? "text-primary font-semibold" : ""
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden md:flex items-center gap-4">
+          <Link
+            href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
+            title="Chat on WhatsApp"
+          >
+            <Phone className="h-4 w-4" />
+            <span className="text-sm font-semibold">+91 9820931585</span>
+            <span className="text-xs font-light">(WhatsApp)</span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
+              <Image
+                src="/ceo.png"
+                alt="Anil Devkar"
+                fill
+                className="object-cover object-[center_60%]"
+                sizes="32px"
+              />
+            </div>
+            <span className="text-sm font-medium">ANIL DEVKAR</span>
+          </div>
+          <Button asChild>
+            <Link href="/booking">Book Now</Link>
+          </Button>
+        </div>
+
+        {/* WhatsApp button for mobile, always visible at the top right */}
+        <div className="flex md:hidden items-center gap-2">
+          <Link
+            href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
+            title="Chat on WhatsApp"
+          >
+            <Phone className="h-4 w-4" />
+            <span className="text-sm font-semibold">WhatsApp</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-primary">
+              <Image
+                src="/ceo.png"
+                alt="Anil Devkar"
+                fill
+                className="object-cover object-[center_60%]"
+                sizes="32px"
+                priority
+              />
+            </div>
+            <span className="text-xs font-medium">ANIL DEVKAR</span>
+          </div>
+        </div>
+
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="outline" size="icon" className="border-0">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full sm:max-w-sm p-0">
+            <SheetHeader>
+              <SheetTitle>Mobile Navigation</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-between p-4 border-b">
+                <Link href="/" className="flex items-center gap-2" onClick={closeSheet}>
+                  <PaintBucket className="h-6 w-6 text-primary" />
+                  <span className="font-bold text-xl">Devkar Paints</span>
+                </Link>
+                <Button variant="ghost" size="icon" onClick={closeSheet}>
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+
+              <nav className="flex flex-col p-4 gap-1 flex-1">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/services", label: "Services" },
+                  { href: "/gallery", label: "Gallery" },
+                  { href: "/about", label: "About" },
+                  { href: "/contact", label: "Contact" },
+                ].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`py-3 px-4 text-lg font-medium rounded-md transition-colors ${
+                      pathname === link.href ? "bg-primary/10 text-primary font-semibold" : "hover:bg-secondary"
+                    }`}
+                    onClick={closeSheet}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="p-4 border-t mt-auto">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+                    <Image
+                      src="/ceo.png"
+                      alt="Anil Devkar"
+                      fill
+                      className="object-cover object-[center_60%]"
+                      sizes="48px"
+                      priority
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-base font-semibold">ANIL DEVKAR</span>
+                    <span className="text-sm text-muted-foreground">CEO, Devkar Paints</span>
+                  </div>
+                </div>
+                <Link
+                  href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md mb-4"
+                  title="Chat on WhatsApp"
+                >
+                  <Phone className="h-5 w-5" />
+                  <span className="text-base font-semibold">+91 9820931585</span>
+                  <span className="text-xs font-light">(WhatsApp)</span>
+                </Link>
+                <Button asChild className="w-full" onClick={closeSheet}>
+                  <Link href="/booking">Book Now</Link>
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </header>
+  )
+}
