@@ -69,7 +69,7 @@ export function Header() {
             href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
+            className="flex items-center gap-2 px-2 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
             title="Chat on WhatsApp"
           >
             <Phone className="h-4 w-4" />
@@ -96,7 +96,7 @@ export function Header() {
             href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
+            className="flex items-center gap-2 px-2 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white transition-colors shadow-md"
             title="Chat on WhatsApp"
           >
             <Phone className="h-3 w-3" />
