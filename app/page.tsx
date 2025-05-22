@@ -95,8 +95,8 @@ export default function Home() {
               <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                 <Calendar className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">5-Year Warranty</h3>
-              <p className="text-muted-foreground">We stand behind our work with a comprehensive warranty.</p>
+              <h3 className="text-xl font-semibold mb-2">Expert Team</h3>
+              <p className="text-muted-foreground">Our skilled professionals ensure quality workmanship.</p>
             </div>
 
             <div className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm">

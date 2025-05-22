@@ -43,7 +43,7 @@ export default function AboutPage() {
           <div className="order-1 lg:order-2">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Our Story</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Founded in 2010 by ANIL Devkar, our company began with a simple mission: to provide exceptional painting
+              Founded in 2005 by ANIL Devkar, our company began with a simple mission: to provide exceptional painting
               services that transform spaces and exceed client expectations.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
@@ -179,7 +179,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-5xl font-bold text-teal-600 mb-3">12+</h3>
+              <h3 className="text-5xl font-bold text-teal-600 mb-3">20+</h3>
               <p className="text-lg font-medium">Years in Business</p>
             </div>
 

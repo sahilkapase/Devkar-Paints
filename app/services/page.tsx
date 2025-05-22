@@ -241,7 +241,7 @@ export default function ServicesPage() {
           <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
             <h3 className="text-xl font-semibold mb-3 text-slate-900">Do you offer a warranty?</h3>
             <p className="text-slate-600">
-              Yes, we provide a 5-year warranty on our workmanship and materials for most projects. Details will be
+              Yes, we provide a warranty on our workmanship and materials for most projects. Details will be
               included in your service agreement.
             </p>
           </div>

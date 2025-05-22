@@ -101,7 +101,7 @@ export default function BookingPage() {
             <div className="mt-8 p-4 bg-teal-50 border border-teal-100 rounded-lg">
               <h4 className="font-semibold mb-2 text-teal-700">Our Guarantee</h4>
               <p className="text-sm text-teal-600">
-                We stand behind our work with a 5-year warranty and a 100% satisfaction guarantee. If you're not
+                We stand behind our work with a 100% satisfaction guarantee. If you're not
                 completely satisfied, we'll make it right.
               </p>
             </div>
