@@ -74,7 +74,7 @@ export function HeroSection() {
           <div className="relative mt-8 lg:mt-0 lg:h-[400px] h-[250px] rounded-2xl overflow-hidden shadow-2xl animate-fade-in animate-delay-500 mx-4 sm:mx-0">
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent z-10"></div>
             <Image
-              src="/4.jpg"
+              src="/profile1.jpg"
               alt="Interior painting showcase"
               fill
               className="object-cover transition-transform duration-10000 hover:scale-110"

@@ -21,12 +21,16 @@ const formSchema = z.object({
   }),
   phone: z.string().min(10, {
     message: "Please enter a valid phone number.",
+  }).regex(/^[0-9+\-\s()]*$/, {
+    message: "Please enter a valid phone number format.",
   }),
   subject: z.string().min(1, {
     message: "Please select a subject.",
   }),
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
+  }).max(1000, {
+    message: "Message must not exceed 1000 characters.",
   }),
 })
 
@@ -49,12 +53,40 @@ export function ContactForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
     setError(null)
+    console.log('Form submission started with values:', values)
 
     try {
-      // FormSubmit.co will handle the submission automatically
-      // We just need to wait for the redirect
+      const formData = new FormData()
+      Object.entries(values).forEach(([key, value]) => {
+        formData.append(key, value)
+      })
+
+      // Add FormSubmit.co specific fields
+      formData.append('_subject', `New Contact Form Submission: ${values.subject}`)
+      formData.append('_template', 'table')
+      formData.append('_captcha', 'false')
+      formData.append('_next', `${window.location.origin}/thank-you`)
+
+      console.log('Sending request to FormSubmit.co...')
+      const response = await fetch("https://formsubmit.co/anilpdeokar9820@gmail.com", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+
+      console.log('Response status:', response.status)
+      const responseData = await response.text()
+      console.log('Response data:', responseData)
+
+      if (!response.ok) {
+        throw new Error(`Failed to send message. Status: ${response.status}`)
+      }
+
       setIsSuccess(true)
       form.reset()
+      console.log('Form submitted successfully')
 
       // Reset success message after 5 seconds
       setTimeout(() => {
@@ -71,8 +103,6 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form 
-        action="https://formsubmit.co/ anilpdeokar9820@gmail.com" 
-        method="POST"
         onSubmit={form.handleSubmit(onSubmit)} 
         className="space-y-6"
       >
@@ -96,7 +126,13 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your name" {...field} className="h-12" name="name" />
+                  <Input 
+                    placeholder="Your name" 
+                    {...field} 
+                    className="h-12 transition-all duration-200 focus:ring-2 focus:ring-primary/20" 
+                    name="name"
+                    disabled={isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -110,7 +146,14 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your email" type="email" {...field} className="h-12" name="email" />
+                  <Input 
+                    placeholder="Your email" 
+                    type="email" 
+                    {...field} 
+                    className="h-12 transition-all duration-200 focus:ring-2 focus:ring-primary/20" 
+                    name="email"
+                    disabled={isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -126,7 +169,13 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input placeholder="Your phone number" {...field} className="h-12" name="phone" />
+                  <Input 
+                    placeholder="Your phone number" 
+                    {...field} 
+                    className="h-12 transition-all duration-200 focus:ring-2 focus:ring-primary/20" 
+                    name="phone"
+                    disabled={isSubmitting}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -139,9 +188,13 @@ export function ContactForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Subject</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select 
+                  onValueChange={field.onChange} 
+                  defaultValue={field.value}
+                  disabled={isSubmitting}
+                >
                   <FormControl>
-                    <SelectTrigger className="h-12">
+                    <SelectTrigger className="h-12 transition-all duration-200 focus:ring-2 focus:ring-primary/20">
                       <SelectValue placeholder="Select a subject" />
                     </SelectTrigger>
                   </FormControl>
@@ -169,9 +222,10 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Please describe how we can help you"
-                  className="min-h-32 resize-none"
+                  className="min-h-32 resize-none transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                   {...field}
                   name="message"
+                  disabled={isSubmitting}
                 />
               </FormControl>
               <FormMessage />
@@ -180,18 +234,28 @@ export function ContactForm() {
         />
 
         {error && (
-          <div className="bg-red-50 text-red-700 px-4 py-3 rounded-md">
-            {error}
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md flex items-center space-x-2">
+            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            </svg>
+            <span>{error}</span>
           </div>
         )}
 
         {isSuccess && (
-          <div className="bg-green-50 text-green-700 px-4 py-3 rounded-md">
-            Thank you for your message! We'll get back to you shortly.
+          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md flex items-center space-x-2">
+            <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span>Thank you for your message! We'll get back to you shortly.</span>
           </div>
         )}
 
-        <Button type="submit" className="w-full md:w-auto md:min-w-32 h-12" disabled={isSubmitting}>
+        <Button 
+          type="submit" 
+          className="w-full md:w-auto md:min-w-32 h-12 transition-all duration-200 hover:scale-105" 
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />

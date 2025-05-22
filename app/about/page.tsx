@@ -19,7 +19,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-video lg:aspect-square rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/4.jpg?height=600&width=600"
                 alt="Devkar Paints team"
                 fill
                 className="object-cover"
@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1 relative aspect-video rounded-lg overflow-hidden shadow-xl">
             <Image
-              src="/placeholder.svg?height=600&width=800"
+              src="/profile1.jpg?height=600&width=800"
               alt="Devkar Paints founder"
               fill
               className="object-cover"

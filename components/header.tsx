@@ -65,6 +65,13 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
+          <Button
+            variant="outline"
+            className="text-primary border-primary hover:bg-primary hover:text-white"
+            asChild
+          >
+            <Link href="/visualizer">Try Color Visualizer</Link>
+          </Button>
           <Link
             href="https://wa.me/919820931585?text=Hello%20sir%2C%20we%20want%20your%20painting%20service!!"
             target="_blank"
@@ -140,6 +147,7 @@ export function Header() {
                   { href: "/gallery", label: "Gallery", icon: ImageIcon },
                   { href: "/about", label: "About", icon: User },
                   { href: "/contact", label: "Contact", icon: Mail },
+                  { href: "/visualizer", label: "Color Visualizer", icon: PaintBucket },
                 ].map((link) => {
                   const Icon = link.icon
                   return (
