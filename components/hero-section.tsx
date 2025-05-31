@@ -183,7 +183,7 @@ export function HeroSection() {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent z-10"></div>
             <Image
-              src="/profile1.jpg"
+              src="/4.jpg"
               alt="Interior painting showcase"
               fill
               className="object-contain object-center transition-transform duration-10000 hover:scale-110"
